@@ -1,0 +1,61 @@
+#include <Servo.h>
+Servo myservo;
+
+
+int val =0;
+int schalter = 2;
+int neigung = 3;
+
+void setup()
+{
+ // Servo an Port 9
+	myservo.attach(9);
+  pinMode(schalter, INPUT);
+  digitalWrite(schalter,HIGH);
+  
+
+  pinMode(neigung, INPUT);
+  digitalWrite(neigung,HIGH);
+    Serial.begin(9600);
+
+
+}
+
+void loop()
+{
+  int switchtState = digitalRead(schalter);
+	delay(15);
+  int neigungStatus = digitalRead(neigung);
+    
+
+    Serial.print("Zustand Schalter: ");
+    Serial.println(switchtState);
+  
+
+    Serial.print("Neigungs-Schalter: ");
+    Serial.println(neigungStatus);
+  
+  if (switchtState == HIGH && neigungStatus == HIGH){
+    val= 2048;
+        // servo auf Position bringen
+    myservo.write(val);
+	delay(15);
+    Serial.print("Zustand Schalter: ");
+    Serial.println(schalterStatus);
+  	delay(500);
+  } else if (schalterStatus == HIGH && neigungStatus == LOW) {
+    val=0;
+    myservo.write(val);
+	delay(15);
+  }
+  else {
+    val=0;
+    // servo zurück fahren
+    myservo.write(val);
+  // warten
+	delay(15);
+  }
+
+  
+  
+}
