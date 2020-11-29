@@ -4,7 +4,7 @@ Servo myservo;
 
 int val =0;
 int schalter = 2;
-int neigung = 3;
+int tilt = 3;
 
 void setup()
 {
@@ -14,8 +14,8 @@ void setup()
   digitalWrite(schalter,HIGH);
   
 
-  pinMode(neigung, INPUT);
-  digitalWrite(neigung,HIGH);
+  pinMode(tilt, INPUT);
+  digitalWrite(tilt,HIGH);
     Serial.begin(9600);
 
 
@@ -25,7 +25,7 @@ void loop()
 {
   int switchtState = digitalRead(schalter);
 	delay(15);
-  int neigungStatus = digitalRead(neigung);
+  int tiltStatus = digitalRead(tilt);
     
 
     Serial.print("Zustand Schalter: ");
